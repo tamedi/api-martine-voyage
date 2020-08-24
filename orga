@@ -1,0 +1,216 @@
+/****************************************************/
+/* /                   
+/*__________________________________________________*/
+/* Affichage des 4 derniers séjours                  
+/****************************************************/
+
+GET "/new-travels"
+--
+Request body: {}
+--
+Response body: {
+    travel_name :"String"
+    short_description :"String"
+    main_picture : "String"
+    price : Number
+
+    pour les 4 derniers index
+}
+
+
+/****************************************************/
+/* /                                
+/*__________________________________________________*/
+/* Affichage des produits de la catégorie choisie              
+/****************************************************/
+
+GET "/category/:category"
+--
+Request body: {}
+--
+Response body: {
+    travel_name :"String"
+    short_description :"String"
+    main_picture : "String"
+    price : Number
+
+}
+/****************************************************/
+
+/****************************************************/
+/* /                                
+/*__________________________________________________*/
+/* Affichage de la fiche produit             
+/****************************************************/
+
+GET "/product/:product"
+--
+Request body: {}
+--
+Response body: {
+    travel_name :"String"
+    long_description :"String"
+    picture : []
+    price : Number
+
+}
+
+
+
+/****************************************************/
+/* /                                
+/*__________________________________________________*/
+/* Enregistrement de la réservation          
+/****************************************************/
+
+POST "/product/reservation"
+--
+Request body: { 
+    travel_name :"String"
+    travellers_number : Number
+    price : Number
+    travel_date : "String"
+    }
+--
+Response body: {
+    "Votre réservation a bien été ajouté au panier"
+    (modification icone panier)
+}
+
+/****************************************************/
+
+/****************************************************/
+/* /                              
+/*__________________________________________________*/
+/* Affichage des 2 derniers séjours de même catégorie             
+/****************************************************/
+
+GET "/product/more/:product"
+--
+Request body: {}
+--
+Response body: {
+    travel_name :"String"
+    short_description :"String"
+    main_picture : "String"
+    price : Number
+
+    pour les 2 derniers index de la cat. concernée
+}
+
+/****************************************************/
+
+/****************************************************/
+/* /                              
+/*__________________________________________________*/
+/* Incription client             
+/****************************************************/
+
+POST "/profil/inscription"
+--
+Request body: {
+    firstname : "String"
+    lastname : "String"
+    tel : Number
+    email : "String"
+    password : "String"
+    hobbies : "String"
+}
+--
+Response body: {
+    "Merci pour votre inscription"
+}
+
+/****************************************************/
+
+/****************************************************/
+/* /                              
+/*__________________________________________________*/
+/* Modification compte client           
+/****************************************************/
+
+PUT "/profil/edit"
+--
+Request body: {
+    firstname : "String"
+    lastname : "String"
+    tel : Number
+    email : "String"
+    password : "String"
+    hobbies : "String"
+}
+--
+Response body: {
+    "Vos modifications ont bien été enregistrées"
+}
+
+/****************************************************/
+
+/****************************************************/
+/* /                              
+/*__________________________________________________*/
+/* Se connecter sur le compte       
+/****************************************************/
+
+POST "/profil/login"
+--
+Request body: {
+    email : "String"
+    password : "String"
+}
+--
+Response body: {
+    "Bonjour "firstname""
+}
+
+/****************************************************/
+
+/****************************************************/
+/* /                              
+/*__________________________________________________*/
+/* Supprimer son compte    
+/****************************************************/
+
+DELETE "/profil/delete"
+--
+Request body: {
+    click sur le bouton supprimer
+}
+--
+Response body: {
+    "Votre compte a bien été supprimé"
+}
+
+/****************************************************/
+
+
+
+
+Schémas BDD
+
+userSchema {
+    firstname : "String"
+    lastname : "String"
+    tel : Number
+    email : "String"
+    password : "String"
+    hobbies : "String"
+    order :[{ 
+    travel_name :"String"
+    travellers_number : Number
+    price : Number
+    travel_date : "String"
+    }]
+
+}
+
+productSchema {
+    category:"String"
+    travel_name :"String"
+    short_description :"String"
+    long_description :"String"
+    main_picture : "String"
+    picture :[{original : "String" , thumbnail : "String" }]
+    price : Number
+}
+
